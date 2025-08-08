@@ -1,0 +1,49 @@
+# Paso 7: Comandos de Construcción y Ejecución
+# Compilar el proyecto
+# Compilar toda la aplicación
+bazel build //app1/src/main/java/com/ejemplo/app1:all
+bazel build //app2/src/main/java/com/ejemplo/app2:all
+
+# Compilar solo la biblioteca
+bazel build //app1/src/main/java/com/ejemplo/app1:app_lib
+bazel build //app2/src/main/java/com/ejemplo/app2:app_lib
+
+# Compilar el ejecutable
+bazel build //app1/src/main/java/com/ejemplo/app1:app
+bazel build //app2/src/main/java/com/ejemplo/app2:app
+
+---------------------------------
+# Ejecutar la aplicación
+# Ejecutar directamente
+bazel run //app1/src/main/java/com/ejemplo/app1:app
+bazel run //app2/src/main/java/com/ejemplo/app2:app
+----------------------------------
+# Ejecutar tests
+# Ejecutar todos los tests
+bazel test //app1/src/test/java/com/ejemplo/app1:all
+bazel test //app2/src/test/java/com/ejemplo/app2:all
+
+# Ejecutar test específico
+bazel test //app1/src/test/java/com/ejemplo/app1:app_test
+bazel test //app2/src/test/java/com/ejemplo/app2:app_test
+
+# Ejecutar tests con salida detallada
+bazel test //app1/src/test/java/com/ejemplo/app1:app_test --test_output=all
+bazel test //app2/src/test/java/com/ejemplo/app2:app_test --test_output=all
+------------------------------------
+# Paso 8: Comandos Útiles de Bazel
+# Ver todos los targets disponibles
+bazel query //...
+
+# Ver dependencias de un target
+bazel query "deps(//app1/src/main/java/com/ejemplo/app1:app)"
+bazel query "deps(//app2/src/main/java/com/ejemplo/app2:app)"
+
+# Limpiar archivos compilados
+bazel clean
+
+# Ver información del workspace
+bazel info
+
+# Análizar rendimiento de construcción
+bazel build //... --profile=profile.json
